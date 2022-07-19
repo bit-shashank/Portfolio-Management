@@ -13,10 +13,8 @@ public class StockService {
 	private StockRepository stockRepository;
 
 	// get stock price using stock id
-	public double getPrice(long id) {
+	public Stock getPrice(long id) {
 
-		Stock stock = stockRepository.findById(id).get();
-
-		return stock.getCurrentPrice();
+		return stockRepository.findById(id).get();
 	}
 }

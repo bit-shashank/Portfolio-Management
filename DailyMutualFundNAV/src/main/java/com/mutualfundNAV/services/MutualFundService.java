@@ -13,10 +13,8 @@ public class MutualFundService {
 	private MutualfundRepository mutualfundRepository;
 
 	// get mutualfund nav price using stock id
-	public double getMutualFundNAV(long id) {
+	public MutualFund getMutualFundNAV(long id) {
 
-		MutualFund mutualFund = mutualfundRepository.findById(id).get();
-
-		return mutualFund.getCurrentNav();
+		return mutualfundRepository.findById(id).get();
 	}
 }
