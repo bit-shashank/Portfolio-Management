@@ -7,6 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 public class AssertSaleResponse {
+	@Override
+	public String toString() {
+		return "AssertSaleResponse [id=" + id + ", saleStatus=" + saleStatus + ", networth=" + networth + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

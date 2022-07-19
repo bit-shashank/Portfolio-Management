@@ -17,7 +17,7 @@ public class StockController {
 	private StockService stockService;
 
 	@GetMapping("/dailyshareprice/{id}")
-	public Stock getSharePrice(@PathVariable("id") long id) {
+	public double getSharePrice(@PathVariable("id") long id) {
 		return stockService.getPrice(id);
 	}
 

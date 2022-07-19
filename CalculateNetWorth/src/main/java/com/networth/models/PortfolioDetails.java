@@ -20,15 +20,15 @@ public class PortfolioDetails {
 	private long id;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
 	@JsonIgnore
-	private List<StockDetails> stoclDetails;
+	private List<StockDetails> stockDetails;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
 	@JsonIgnore
 	private List<MutualFundDetails> mutualFundDetails;
 
-	public PortfolioDetails(long id, List<StockDetails> stoclDetails, List<MutualFundDetails> mutualFundDetails) {
+	public PortfolioDetails(long id, List<StockDetails> stockDetails, List<MutualFundDetails> mutualFundDetails) {
 		super();
 		this.id = id;
-		this.stoclDetails = stoclDetails;
+		this.stockDetails = stockDetails;
 		this.mutualFundDetails = mutualFundDetails;
 	}
 
@@ -45,11 +45,11 @@ public class PortfolioDetails {
 	}
 
 	public List<StockDetails> getStoclDetails() {
-		return stoclDetails;
+		return stockDetails;
 	}
 
-	public void setStoclDetails(List<StockDetails> stoclDetails) {
-		this.stoclDetails = stoclDetails;
+	public void setStockDetails(List<StockDetails> stockDetails) {
+		this.stockDetails = stockDetails;
 	}
 
 	public List<MutualFundDetails> getMutualFundDetails() {

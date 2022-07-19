@@ -17,7 +17,7 @@ public class MutualFundController {
 	private MutualFundService mutualFundService;
 
 	@GetMapping("/mutualFundNav/{id}")
-	public MutualFund getMutualFundNAV(@PathVariable("id") long id) {
+	public double getMutualFundNAV(@PathVariable("id") long id) {
 		return mutualFundService.getMutualFundNAV(id);
 	}
 

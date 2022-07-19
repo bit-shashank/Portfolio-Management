@@ -12,9 +12,14 @@ public class StockService {
 	@Autowired
 	private StockRepository stockRepository;
 
-	// get stock price using stock id
-	public Stock getPrice(long id) {
-
+	// get stock using stock id
+	public Stock getStock(long id) {
 		return stockRepository.findById(id).get();
 	}
+
+	// get stock price using stock id
+	public double getPrice(long id) {
+		return stockRepository.findById(id).get().getCurrentPrice();
+	}
+
 }

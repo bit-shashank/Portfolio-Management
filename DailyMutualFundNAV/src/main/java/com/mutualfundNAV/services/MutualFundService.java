@@ -12,9 +12,13 @@ public class MutualFundService {
 	@Autowired
 	private MutualfundRepository mutualfundRepository;
 
-	// get mutualfund nav price using stock id
-	public MutualFund getMutualFundNAV(long id) {
-
+	// get mutual fund using stock id
+	public MutualFund getMutualFund(long id) {
 		return mutualfundRepository.findById(id).get();
+	}
+
+	// get mutual fund NAV price using stock id
+	public double getMutualFundNAV(long id) {
+		return mutualfundRepository.findById(id).get().getCurrentNav();
 	}
 }
