@@ -1,0 +1,132 @@
+.left{
+    float: left;
+    width: 35%;
+    background-color:#212529;
+}
+.right{
+    float: right;
+    width: 65%;
+    background-color:#212529;
+    /* box-shadow: 0 .5rem 1rem rgba(0,0,0,2.15)!important; */
+}
+
+.containers{
+    height: 93vh;
+}
+
+::ng-deep .mat-tab-label {
+    color: white;
+    font-family: 'Architects Daughter';font-size: 22px;
+}
+
+::ng-deep .left .mat-tab-header{
+    padding-left: 18%;
+    padding-right: 22%;
+    padding-top: 5%;
+}
+
+.tab{
+    color: #fff;
+}
+
+.right table {
+    font-family: 'Architects Daughter';font-size: 22px;
+    width: 98%;
+    background-color: #212529;
+    text-align: center;
+}
+
+.left table {
+    font-family: 'Architects Daughter';font-size: 22px;
+    width: 98%;
+    background-color: #212529;
+}
+
+.mat-header-cell{
+    color: #fff;
+}
+
+.mat-cell{
+    color: #a5a7a9;
+}
+
+.font{
+    font-family: 'Architects Daughter';font-size: 22px;
+}
+
+.heading{
+    position: sticky;
+    top: 11%;
+    margin: auto;
+    text-align: center;
+}
+
+
+::ng-deep .right .mat-tab-header{
+    padding-left: 33%;
+    padding-top: 5%;
+}
+
+
+/* .qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+div {
+    text-align: center;
+}
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+} */
+/*Prevent text selection*/
+
+input{  
+    border: 0;
+    width: 4%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color: #212529;
+    color: #fff;
+}
+
+.right th.mat-header-cell {
+    text-align: center;
+}
