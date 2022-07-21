@@ -22,25 +22,6 @@ export class AuthenticationModuleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const signUpButton = document.getElementById(
-      'signUp'
-    ) as HTMLDivElement | null;
-    const signInButton = document.getElementById(
-      'signIn'
-    ) as HTMLDivElement | null;
-    const container = document.getElementById(
-      'container'
-    ) as HTMLDivElement | null;
-    const signIn = document.getElementById('Create') as HTMLDivElement | null;
-    signUpButton?.addEventListener('click', () => {
-      container?.classList.add('right-panel-active');
-    });
-    signInButton?.addEventListener('click', () => {
-      container?.classList.remove('right-panel-active');
-    });
-    signIn?.addEventListener('click', () => {
-      container?.classList.remove('right-panel-active');
-    });
     this.initUserForm();
     this.initLoginForm();
   }

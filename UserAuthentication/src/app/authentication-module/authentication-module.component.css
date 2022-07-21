@@ -6,8 +6,19 @@
   padding: 0;
 }
 
+.Login{
+  font-size: 37px;
+  margin-bottom: 50px;
+}
+
+.text-control{
+  font-size: 16px;
+  margin-bottom: 26px;
+}
+
 body {
-  background-image: url("../../assets/img/banner.jpeg");
+  /* background-image: url("../../assets/img/banner.jpeg"); */
+  background-color: #111111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +60,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  border: 1px solid #ef4a37;
+  background-color: #ef4a37;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -74,7 +85,8 @@ button.ghost {
 }
 
 form {
-  background-color: #ffffff;
+  background-color: #181818;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,16 +104,20 @@ input {
   width: 100%;
 }
 
-.container {
+mat-card{
+  width: 50%;
+    height: 58%;
+}
+
+/* .container {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
   width: 800px;
   max-width: 100%;
   min-height: 480px;
-}
+} */
 
 .form-container {
   position: absolute;
@@ -203,6 +219,7 @@ input {
 .overlay-right {
   right: 0;
   transform: translateX(0);
+  background-color: #181818;
 }
 
 .container.right-panel-active .overlay-right {

@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Architects Daughter';font-size: 22px;}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Verdana, Geneva, Tahoma, sans-serif;";
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #181818; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #404040; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid #181818; /* creates padding around scroll thumb */
+}

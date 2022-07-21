@@ -7,51 +7,27 @@
     <title>SignIn</title>
   </head>
   <body>
-    <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form [formGroup]="UserForm" (ngSubmit)="save()">
-          <h1 style="padding-top: 15px">Create Account</h1>
-          <input type="text" placeholder="UserName" formControlName="userName" />
-          <input type="email" placeholder="Email" formControlName="emailId" />
-          <input type="password" placeholder="Password" formControlName="password" />
-          <button type="submit" style="margin-top: 15px" id="Create">Create Account</button>
-          <h5>
-            Already have an account!
-            <a  class="ghost" id="signIn" style="color: blue"><u>Sign In</u></a>
-          </h5>
-        </form>
-      </div>
+    <mat-card class=" mat-elevation-z8" id="container">
       <div class="form-container sign-in-container">
         <form [formGroup]="LoginForm" (ngSubmit)="login()">
-          <h1 style="padding-bottom: 15px">Login Now</h1>
-          <input type="text" placeholder="UserName" formControlName="userName" />
-          <input type="password" placeholder="Password" formControlName="password" />
-          <a href="#" style="padding-left: 150px; font-weight: bold">
-            Forgot Your Password?</a
-          >
+          <h1 class="Login">Login Now</h1>
+          <input type="text" class="text-control" placeholder="UserName" formControlName="userName" />
+          <input type="password" class="text-control" placeholder="Password" formControlName="password" />
+          
           <button style="margin-top: 10px">Let Me In...</button>
-          <h5>
-            New here!
-            <a class="ghost" id="signUp" style="color: blue"><u>Sign Up</u></a>
-          </h5>
         </form>
       </div>
       <div class="overlay-container">
         <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <img
-              src="https://images.unsplash.com/photo-1536152470836-b943b246224c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1938&q=80"
-              alt="movie-1"
-            />
-          </div>
           <div class="overlay-panel overlay-right">
             <img
-              src="https://images.unsplash.com/photo-1536152470836-b943b246224c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1938&q=80"
+              src="../../assets/img/Logo.svg"
               alt="movie-2"
+              height="32%"
             />
           </div>
         </div>
       </div>
-    </div>
+    </mat-card>
   </body>
 </html>

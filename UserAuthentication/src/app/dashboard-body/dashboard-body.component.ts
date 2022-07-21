@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface Stocks {
   Stockname: string;
@@ -43,6 +45,7 @@ const USER_DATAS: MutualFund[] = [
   {Fund: 'Oxygen', Price: 567},
   {Fund: 'Fluorine', Price: 765},
   {Fund: 'Neon', Price: 876},
+  {Fund: 'Neon', Price: 876}
 ];
 
 const USER_DATA: Stocks[] = [
@@ -58,11 +61,17 @@ const USER_DATA: Stocks[] = [
   templateUrl: './dashboard-body.component.html',
   styleUrls: ['./dashboard-body.component.css']
 })
-export class DashboardBodyComponent implements OnInit {
+export class DashboardBodyComponent implements OnInit, AfterViewInit {
 
   Form: any
+  dataSource4 = new MatTableDataSource<MutualFund>(USER_DATAS);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private formBuilder: FormBuilder) { }
+
+  ngAfterViewInit() {
+    this.dataSource4.paginator = this.paginator;
+  }
 
   ngOnInit(): void {   
     this.initForm()
@@ -84,7 +93,6 @@ export class DashboardBodyComponent implements OnInit {
   dataSource3 = USER_DATA;
 
   displayedColumns4: string[] = ['Fund', 'Price', 'Counter'];
-  dataSource4 = USER_DATAS;
 
   minus(){
     if(this.Form.get('count').value == 1){
@@ -97,6 +105,10 @@ export class DashboardBodyComponent implements OnInit {
 
   plus(){
     this.Form.get('count').setValue(this.Form.get('count').value + 1)
+  }
+
+  countvisible(){
+
   }
 
 }
