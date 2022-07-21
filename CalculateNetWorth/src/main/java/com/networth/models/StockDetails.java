@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class StockDetails {
 	
@@ -16,6 +19,7 @@ public class StockDetails {
 	private long count;
 
 	@ManyToOne
+	@JsonIgnore
 	private PortfolioDetails portfolioDetails;
 
 	public StockDetails(long id, long stockId, long count) {

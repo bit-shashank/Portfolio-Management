@@ -1,6 +1,9 @@
-package com.networth.models;
+package com.networth.dtos;
 
 import java.util.List;
+
+import com.networth.models.MutualFundDetails;
+import com.networth.models.StockDetails;
 
 public class SaleDetail {
 

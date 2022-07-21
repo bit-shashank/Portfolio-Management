@@ -1,5 +1,7 @@
 package com.mutualfundNAV.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,10 @@ public class MutualFundService {
 	// get mutual fund NAV price using stock id
 	public double getMutualFundNAV(long id) {
 		return mutualfundRepository.findById(id).get().getCurrentNav();
+	}
+
+	public List<MutualFund> getAllFunds() {
+		// TODO Auto-generated method stub
+		return mutualfundRepository.findAll();
 	}
 }

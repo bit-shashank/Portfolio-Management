@@ -1,5 +1,7 @@
 package com.shareprice.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,14 @@ public class StockController {
 	@GetMapping("/dailyshareprice/{id}")
 	public double getSharePrice(@PathVariable("id") long id) {
 		return stockService.getPrice(id);
+	}
+	@GetMapping("/{id}")
+	public Stock getStock(@PathVariable("id") long id) {
+		return stockService.getStock(id);
+	}
+	@GetMapping("/all")
+	public List<Stock> getAllStocks(){
+		return stockService.getAllStocks();
 	}
 
 }
