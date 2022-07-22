@@ -1,114 +1,124 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface Stocks {
-  Stockname: string;
-  Price: number;
-}
-
-export interface MutualFund {
-  Fund: string;
-  Price: number;
-}
-
-const ELEMENT_DATAS: MutualFund[] = [
-  {Fund: 'Hydrogen', Price: 123},
-  {Fund: 'Helium', Price: 456},
-  {Fund: 'Lithium', Price: 789},
-  {Fund: 'Beryllium', Price: 132},
-  {Fund: 'Boron', Price: 231},
-  {Fund: 'Carbon', Price: 453},
-  {Fund: 'Nitrogen', Price: 435},
-  {Fund: 'Oxygen', Price: 567},
-  {Fund: 'Fluorine', Price: 765},
-  {Fund: 'Neon', Price: 876},
-];
-
-const ELEMENT_DATA: Stocks[] = [
-  {Stockname: 'Hydrogen', Price: 123},
-  {Stockname: 'Helium', Price: 456},
-  {Stockname: 'Lithium', Price: 789},
-  {Stockname: 'Beryllium', Price: 132},
-  {Stockname: 'Boron', Price: 231},
-  {Stockname: 'Carbon', Price: 453},
-  {Stockname: 'Nitrogen', Price: 435},
-  {Stockname: 'Oxygen', Price: 567},
-  {Stockname: 'Fluorine', Price: 765},
-  {Stockname: 'Neon', Price: 876},
-];
-
-const USER_DATAS: MutualFund[] = [
-  {Fund: 'Carbon', Price: 453},
-  {Fund: 'Nitrogen', Price: 435},
-  {Fund: 'Oxygen', Price: 567},
-  {Fund: 'Fluorine', Price: 765},
-  {Fund: 'Neon', Price: 876},
-  {Fund: 'Neon', Price: 876}
-];
-
-const USER_DATA: Stocks[] = [
-  {Stockname: 'Carbon', Price: 453},
-  {Stockname: 'Nitrogen', Price: 435},
-  {Stockname: 'Oxygen', Price: 567},
-  {Stockname: 'Fluorine', Price: 765},
-  {Stockname: 'Neon', Price: 876},
-];
+import { MutualFund } from '../models/MutualFund.model';
+import { Stocks } from '../models/Stocks.models';
+import { NetWorthDataService } from '../services/net-worth-data.service';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-dashboard-body',
   templateUrl: './dashboard-body.component.html',
   styleUrls: ['./dashboard-body.component.css']
 })
-export class DashboardBodyComponent implements OnInit, AfterViewInit {
+export class DashboardBodyComponent implements OnInit {
 
+  /**
+   * Declaration and initialization section
+   */
   Form: any
-  dataSource4 = new MatTableDataSource<MutualFund>(USER_DATAS);
+  NetWorthData: any
+  displayedColumns4: string[] = ['Fund', 'Price', 'Counter'];
+  dataSource4: any
+  displayedColumns1: string[] = ['Stockname', 'Price'];
+  dataSource1: any
+  show: boolean = false
+  displayedColumns2: string[] = ['Fund', 'Price'];
+  dataSource2: any;
+  displayedColumns3: string[] = ['Stockname', 'Price', 'Counter'];
+  dataSource3: any
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private formBuilder: FormBuilder) { }
 
-  ngAfterViewInit() {
-    this.dataSource4.paginator = this.paginator;
+  constructor(private netWorthDataservice: NetWorthDataService, private httpservice: ServicesService) { }
+
+  ngOnInit(): void {
+    /**
+     * This is for getting the networth and user details
+     */
+    this.NetWorthData = this.netWorthDataservice.getNetData()
+    
+    /**
+     * Calling All Stocks service
+     */
+    this.httpservice.AllStocks(this.netWorthDataservice.getToken(), this.netWorthDataservice.getId()).subscribe(data => {
+      this.dataSource1 = data
+    })
+
+    /**
+     * Calling All MutualFund service
+     */
+    this.httpservice.AllMutualFunds(this.netWorthDataservice.getToken(), this.netWorthDataservice.getId()).subscribe(data => {
+      this.dataSource2 = data
+    })
+
+    /**
+     * Creating dataSource for table 3 and 4
+     */
+    this.dataSource3 = new MatTableDataSource<Stocks>(this.NetWorthData.stockDetails);
+    this.dataSource4 = new MatTableDataSource<Stocks>(this.NetWorthData.mutualFundDetails);
+    // this.dataSource3 = this.NetWorthData.stockDetails;
+    // this.dataSource4 = this.NetWorthData.mutualFundDetails;
   }
 
-  ngOnInit(): void {   
-    this.initForm()
+  /**
+   * 
+   * @param id is the user Stock Id for identifying the Stock
+   */
+  minusStocks(id: number){
+    for(let i = 0; i < this.dataSource3.data.length; i++) {
+      if(this.dataSource3.data[i].id == id && this.dataSource3.data[i].qty > 0){
+        this.dataSource3.data[i].qty -= 1
+      }
+    }
   }
 
-  initForm() {
-    this.Form = this.formBuilder.group({
-      count: new FormControl({value: 1, disabled: true})
-    });
-  }
-
-  displayedColumns1: string[] = ['Stockname', 'Price'];
-  dataSource1 = ELEMENT_DATA;
-
-  displayedColumns2: string[] = ['Fund', 'Price'];
-  dataSource2 = ELEMENT_DATAS;
-
-  displayedColumns3: string[] = ['Stockname', 'Price', 'Counter'];
-  dataSource3 = USER_DATA;
-
-  displayedColumns4: string[] = ['Fund', 'Price', 'Counter'];
-
-  minus(){
-    if(this.Form.get('count').value == 1){
-      this.Form.get('count').setValue(1)
-    }else{
-    this.Form.get('count').setValue(this.Form.get('count').value - 1)
+  /**
+   * 
+   * @param id is the user Stock Id for identifying the Stock
+   */
+  plusStocks(id: number){
+    for(let i = 0; i < this.dataSource3.data.length; i++) {
+      if(this.dataSource3.data[i].id == id){
+        this.dataSource3.data[i].qty += 1
+      }
     }
   }
 
 
-  plus(){
-    this.Form.get('count').setValue(this.Form.get('count').value + 1)
+  /**
+   * 
+   * @param id is the user Stock Id for identifying the Stock
+   */
+   minusMutualFunds(id: number){
+    for(let i = 0; i < this.dataSource4.data.length; i++) {
+      if(this.dataSource4.data[i].id == id && this.dataSource4.data[i].qty > 0){
+        this.dataSource4.data[i].qty -= 1
+      }
+    }
   }
 
-  countvisible(){
+  /**
+   * 
+   * @param id is the user Stock Id for identifying the Stock
+   */
+  plusMutualFunds(id: number){
+    for(let i = 0; i < this.dataSource4.data.length; i++) {
+      if(this.dataSource4.data[i].id == id){
+        this.dataSource4.data[i].qty += 1
+      }
+    }
+  }
 
+  /**
+   * This method is for making the plus and minus buttons visible and invisible on command
+   */
+  countvisible(){
+    if(!this.show){
+      this.show = true
+    }else{
+      this.show = false
+    }
   }
 
 }

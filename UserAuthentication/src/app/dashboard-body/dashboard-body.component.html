@@ -9,12 +9,14 @@
         >
           <ng-container matColumnDef="Stockname">
             <th mat-header-cell *matHeaderCellDef>Stock Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.Stockname }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="Price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
-            <td mat-cell *matCellDef="let element">{{ element.Price }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.currentPrice }}
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
@@ -29,12 +31,12 @@
         >
           <ng-container matColumnDef="Fund">
             <th mat-header-cell *matHeaderCellDef>Mutual Fund</th>
-            <td mat-cell *matCellDef="let element">{{ element.Fund }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="Price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
-            <td mat-cell *matCellDef="let element">{{ element.Price }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.currentNav }}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
@@ -55,44 +57,39 @@
         >
           <ng-container matColumnDef="Stockname">
             <th mat-header-cell *matHeaderCellDef>Stock Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.Stockname }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="Price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
-            <td mat-cell *matCellDef="let element">{{ element.Price }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.currentPrice }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="Counter">
-            <th mat-header-cell *matHeaderCellDef>Owned</th>
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+
             <td mat-cell *matCellDef="let element">
-              <div class="qty mt-5">
-                <form [formGroup]="Form">
-                  <!-- <button
-                    mat-mini-fab
-                    color="primary"
-                    (click)="minus()"
-                    aria-label="Example icon button with a menu icon"
-                  >
-                    <mat-icon>remove</mat-icon>
-                  </button> -->
-                  <!-- <span class="minus bg-dark">-</span> -->
-                  <input
-                    type="number"
-                    id="count"
-                    name="qty"
-                    formControlName="count"
-                  />
-                  <!-- <button
-                    mat-mini-fab
-                    color="primary"
-                    (click)="plus()"
-                    aria-label="Example icon button with a menu icon"
-                  >
-                    <mat-icon>add</mat-icon>
-                  </button> -->
-                </form>
-              </div>
+              <button
+                *ngIf="this.show"
+                mat-mini-fab
+                color="primary"
+                (click)="minusStocks(element.id)"
+                aria-label="Example icon button with a menu icon"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+              {{ element.qty }}
+              <button
+                *ngIf="this.show"
+                mat-mini-fab
+                color="primary"
+                (click)="plusStocks(element.id)"
+                aria-label="Example icon button with a menu icon"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
             </td>
           </ng-container>
 
@@ -108,55 +105,42 @@
         >
           <ng-container matColumnDef="Fund">
             <th mat-header-cell *matHeaderCellDef>Mutual Fund</th>
-            <td mat-cell *matCellDef="let element">{{ element.Fund }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="Price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
-            <td mat-cell *matCellDef="let element">{{ element.Price }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.currentNav }}</td>
           </ng-container>
 
           <ng-container matColumnDef="Counter">
-            <th mat-header-cell *matHeaderCellDef>Owned</th>
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
             <td mat-cell *matCellDef="let element">
-              <div class="qty mt-5">
-                <form [formGroup]="Form">
-                  <!-- <button
-                    mat-mini-fab
-                    color="primary"
-                    (click)="minus()"
-                    aria-label="Example icon button with a menu icon"
-                  >
-                    <mat-icon>remove</mat-icon>
-                  </button> -->
-                  <!-- <span class="minus bg-dark">-</span> -->
-                  <input
-                    type="number"
-                    id="count"
-                    name="qty"
-                    formControlName="count"
-                  />
-                  <!-- <button
-                    mat-mini-fab
-                    color="primary"
-                    (click)="plus()"
-                    aria-label="Example icon button with a menu icon"
-                  >
-                    <mat-icon>add</mat-icon>
-                  </button> -->
-                </form>
-              </div>
+              <button
+                *ngIf="this.show"
+                mat-mini-fab
+                color="primary"
+                (click)="minusMutualFunds(element.id)"
+                aria-label="Example icon button with a menu icon"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            {{ element.qty }}
+            <button
+              *ngIf="this.show"
+              mat-mini-fab
+              color="primary"
+              (click)="plusMutualFunds(element.id)"
+              aria-label="Example icon button with a menu icon"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
             </td>
           </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns4"></tr>
         </table>
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 20]"
-          showFirstLastButtons
-          aria-label="Select page of periodic elements"
-        >
-        </mat-paginator>
       </mat-tab>
     </mat-tab-group>
 
@@ -189,7 +173,7 @@
 
     <div class="nw">
       <h2>Net Worth</h2>
-      <h1>₹ 50,000</h1>
+      <h1>{{ this.NetWorthData.netWorth }}</h1>
     </div>
     <button mat-raised-button class="btn-color" (click)="countvisible()">
       Sell Assets
