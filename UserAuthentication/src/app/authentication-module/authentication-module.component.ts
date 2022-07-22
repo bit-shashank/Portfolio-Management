@@ -4,7 +4,6 @@ import { ServicesService } from '../services/services.service';
 import { FormBuilder } from '@angular/forms';
 import { User } from '../models/user.model';
 import { Token } from '../models/token';
-import { NetWorthDataService } from '../services/net-worth-data.service';
 
 @Component({
   selector: 'app-authentication-module',
@@ -20,8 +19,7 @@ export class AuthenticationModuleComponent implements OnInit {
   constructor(
     private service: ServicesService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private netDataService: NetWorthDataService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -57,10 +55,13 @@ export class AuthenticationModuleComponent implements OnInit {
     this.user = this.LoginForm.value;
     console.log(this.user)
     this.service.Authenticate(this.user).subscribe((res) => {
-      this.netDataService.setToken(res['token'])
-      this.netDataService.setId(res['id'])
+      localStorage.setItem('token', res['token'])
+      localStorage.setItem('id', res['id'])
+      // this.netDataService.setToken(res['token'])
+      // this.netDataService.setId(res['id'])
       this.service.CalculateNetWorth(res['token'],res['id']).subscribe((res1) => {
-        this.netDataService.setNetData(res1)
+        localStorage.setItem('NetWorthData', JSON.stringify(res1)); 
+        // this.netDataService.setNetData(res1)
         this.router.navigate(['/dashboard']);
       })
     })

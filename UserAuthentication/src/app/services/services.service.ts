@@ -36,6 +36,11 @@ export class ServicesService {
     return this.httpClient.get(`${this.base_url}/mutualfunds/${id}` , { 'headers': headers_object })
   }
 
+  sellAssets(id: number, sellAssets: any, token: String): Observable<Object>{
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.httpClient.post(`${this.base_url}/sellAssets/${id}`, sellAssets, { 'headers': headers_object })
+  }
+
   // Login(login: Login): Observable<Object>{
   //   const payload = new HttpParams();
   //   payload.set('userName', login.userName);

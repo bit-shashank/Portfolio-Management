@@ -76,7 +76,7 @@ mat-paginator{
     top: 7%;
     left: 80%;
     width: 14%;
-    height: 6%;
+    height: 40px;
 }
 
 .heading{
@@ -107,8 +107,6 @@ mat-paginator{
 }
 
 input{  
-    position: relative;
-    bottom: 19px;
     border: 0;
     width: 4%;
     text-align: center;
@@ -132,4 +130,22 @@ td.mat-cell {
 
 th.mat-header-cell {
     border-color: #424242;
+}
+
+::ng-deep mat-tab .mat-tab-body{
+    height: 51vh;
+}
+
+::ng-deep .mat-tab-body-wrapper{
+    height: 51vh;
+}
+
+.btn-mf{
+    background-color: #ef4a37;
+    color: #fff;
+    position: relative;
+    top: 7%;
+    left: 79%;
+    width: 19%;
+    height: 40px;
 }

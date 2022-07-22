@@ -72,7 +72,7 @@
 
             <td mat-cell *matCellDef="let element">
               <button
-                *ngIf="this.show"
+                *ngIf="this.show1"
                 mat-mini-fab
                 color="primary"
                 (click)="minusStocks(element.id)"
@@ -82,7 +82,7 @@
               </button>
               {{ element.qty }}
               <button
-                *ngIf="this.show"
+                *ngIf="this.show1"
                 mat-mini-fab
                 color="primary"
                 (click)="plusStocks(element.id)"
@@ -96,6 +96,9 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns3"></tr>
         </table>
+        <button mat-raised-button class="btn-color" (click)="countvisibleAssets()">
+          Sell Stocks
+        </button>
       </mat-tab>
       <mat-tab label="Mutual Fund">
         <table
@@ -117,7 +120,7 @@
             <th mat-header-cell *matHeaderCellDef>Quantity</th>
             <td mat-cell *matCellDef="let element">
               <button
-                *ngIf="this.show"
+                *ngIf="this.show1"
                 mat-mini-fab
                 color="primary"
                 (click)="minusMutualFunds(element.id)"
@@ -127,7 +130,7 @@
               </button>
             {{ element.qty }}
             <button
-              *ngIf="this.show"
+              *ngIf="this.show1"
               mat-mini-fab
               color="primary"
               (click)="plusMutualFunds(element.id)"
@@ -141,42 +144,16 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns4"></tr>
         </table>
+        <button mat-raised-button class="btn-mf" (click)="countvisibleAssets()">
+          Sell MutualFunds
+        </button>
       </mat-tab>
     </mat-tab-group>
-
-    <!-- <div class="qty mt-5">
-      <form [formGroup]="Form">
-        <button
-          mat-mini-fab
-          color="primary"
-          (click)="minus()"
-          aria-label="Example icon button with a menu icon"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-        <input
-          type="number"
-          id="count"
-          name="qty"
-          formControlName="count"
-        />
-        <button
-          mat-mini-fab
-          color="primary"
-          (click)="plus()"
-          aria-label="Example icon button with a menu icon"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-      </form>
-    </div> -->
 
     <div class="nw">
       <h2>Net Worth</h2>
       <h1>{{ this.NetWorthData.netWorth }}</h1>
     </div>
-    <button mat-raised-button class="btn-color" (click)="countvisible()">
-      Sell Assets
-    </button>
+
   </div>
 </div>
