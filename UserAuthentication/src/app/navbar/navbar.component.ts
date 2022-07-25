@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  NetWorthData: any
+  
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.NetWorthData = JSON.parse(localStorage.getItem('NetWorthData'));
   }
 
   signout(){

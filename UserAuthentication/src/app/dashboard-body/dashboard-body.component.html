@@ -96,7 +96,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns3"></tr>
         </table>
-        <button mat-raised-button class="btn-color" (click)="countvisibleAssets()">
+        <button mat-raised-button class="btn-mf" (click)="openDialog('Stocks')">
           Sell Stocks
         </button>
       </mat-tab>
@@ -144,7 +144,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns4"></tr>
         </table>
-        <button mat-raised-button class="btn-mf" (click)="countvisibleAssets()">
+        <button mat-raised-button class="btn-mf" (click)="openDialog('Mutual Funds')">
           Sell MutualFunds
         </button>
       </mat-tab>

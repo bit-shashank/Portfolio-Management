@@ -10,12 +10,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardBodyComponent } from './dashboard-body/dashboard-body.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SellDialogComponent } from './sell-dialog/sell-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AuthenticationModuleComponent,
     DashboardComponent,
     NavbarComponent,
-    DashboardBodyComponent
+    DashboardBodyComponent,
+    SellDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +42,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
