@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogData } from '../dashboard-body/dashboard-body.component';
@@ -13,6 +13,7 @@ import { Stocks } from '../models/Stocks.models';
 })
 export class SellDialogComponent implements OnInit{
   NetWorthData: any
+  message: any
   displayedColumns: string[] = ['Share', 'Price', 'Counter']
   dataSource: any
   dataSource4: any
@@ -37,7 +38,7 @@ export class SellDialogComponent implements OnInit{
     }
     this.asset = this.data['asset'] 
     this.initSellForm()
-    this.asset.forEach((moveMaker ) => this.SellForm .addControl(moveMaker.id, new FormControl()));
+    this.asset.forEach((moveMaker ) => this.SellForm .addControl(moveMaker.id, new FormControl('', [Validators.required, Validators.max(moveMaker.qty)])));
   }
 
   initSellForm() {
@@ -48,6 +49,14 @@ export class SellDialogComponent implements OnInit{
   
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  check(){
+    if(this.SellForm.valid){
+      this.dialogRef.close(this.SellForm.value);
+    }else{
+      this.SellForm.reset()
+    }
   }
 
 }

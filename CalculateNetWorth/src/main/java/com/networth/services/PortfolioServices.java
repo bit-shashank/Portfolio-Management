@@ -51,6 +51,7 @@ public class PortfolioServices {
 					"http://localhost:4500/stock/" + String.valueOf(stockDetails.getStockId()),
 					StockDto.class);
 			stock.setQty(stockCount);
+			stock.setId(stockDetails.getStockId());
 			amount = amount + (stockCount * stock.getCurrentPrice());
 			stockDtos.add(stock);
 		}
@@ -62,6 +63,7 @@ public class PortfolioServices {
 					+ String.valueOf(mutualFundDetails.getMutualFundId()), FundDto.class);
 			fundDto.setQty(mutualFundCount);
 			amount = amount + (mutualFundCount * fundDto.getCurrentNav());
+			fundDto.setId(mutualFundDetails.getMutualFundId());
 			fundDtos.add(fundDto);
 		}
 
@@ -88,20 +90,31 @@ public class PortfolioServices {
 		List<StockDetails> saleStockDetailsList = saleDetail.getStockDetails();
 		List<MutualFundDetails> saleMutualFundDetailsList = saleDetail.getMutualFundDetails();
 
-
+		List<StockDetails> tempStocks = new ArrayList<StockDetails>();
+		List<MutualFundDetails> tempFunds = new ArrayList<MutualFundDetails>();
+		
 		// compare and verify and calculate stocks
 		for (StockDetails saleStockDetails : saleStockDetailsList) {
+			
 			for (StockDetails stockDetails : stockDetailsList) {
 				if (saleStockDetails.getStockId() == stockDetails.getStockId()) {
 					if (saleStockDetails.getCount() <= stockDetails.getCount()) {
+						
 						// update the number of stock holdings
 						stockDetails.setCount(stockDetails.getCount() - saleStockDetails.getCount());
+						if(stockDetails.getCount() <= 0) {
+							tempStocks.add(stockDetails);
+						}
 					} 
 				} else {
 					// to show error when he/she don't even have such stocks
 				}
 			}
 		}
+		
+		stockDetailsList.removeAll(tempStocks);
+		
+		
 		// compare and verify and calculate mutual funds
 		for (MutualFundDetails saleMutualFundDetails : saleMutualFundDetailsList) {
 			for (MutualFundDetails mutualFundDetails : mutualFundDetailsList) {
@@ -109,13 +122,20 @@ public class PortfolioServices {
 					if (saleMutualFundDetails.getCount() <= mutualFundDetails.getCount()) {
 						// update the number of stock holdings
 						mutualFundDetails.setCount(mutualFundDetails.getCount() - saleMutualFundDetails.getCount());
+						if(mutualFundDetails.getCount() <= 0) {
+							tempFunds.add(mutualFundDetails);
+						}
 					} 
 				} else {
 					// to show error when he/she don't even have such mutual fund
 				}
 			}
 		}
-
+		
+		mutualFundDetailsList.removeAll(tempFunds);
+		
+		
+		
 		portfolioDetailRepository.save(portfolioDetails);
 		PortfolioDTO currPortfolio=calculateNetWorth(id);
         return currPortfolio;

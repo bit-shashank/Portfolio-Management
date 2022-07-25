@@ -1,7 +1,7 @@
 package com.networth.dtos;
 
 public class FundDto {
-	
+	private Long id;
     private String name;
     private double currentNav;
     private double qty;
@@ -32,6 +32,14 @@ public class FundDto {
 
 	public void setQty(double qty) {
 		this.qty = qty;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
     
 	

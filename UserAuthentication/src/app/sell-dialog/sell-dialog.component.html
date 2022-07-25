@@ -24,8 +24,9 @@
         <form [formGroup]="SellForm">
         <mat-form-field appearance="outline">
           <mat-label>number of {{ data.name }} to be deleted</mat-label>
-          <input matInput type="number" formControlName={{element.id}}>
+          <input matInput type="number" formControlName={{element.id}} min=0>
           <mat-hint>max. {{element.qty}}</mat-hint>
+          <mat-error>please enter quantity between 0 and {{element.qty}}</mat-error>
         </mat-form-field>
         </form>
       </td>
@@ -37,7 +38,7 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="SellForm.value" cdkFocusInitial>
+  <button mat-button (click)="check()" cdkFocusInitial>
     Sell {{ data.name }}
   </button>
 </div>

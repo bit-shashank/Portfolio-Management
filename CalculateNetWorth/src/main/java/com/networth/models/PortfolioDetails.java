@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,10 +21,10 @@ public class PortfolioDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
 	private List<MutualFundDetails> mutualFundDetails;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "portfolioDetails")
 	private List<StockDetails> stockDetails;
 	
 	
@@ -110,4 +109,12 @@ public class PortfolioDetails {
 		this.mutualFundDetails = mutualFundDetails;
 	}
 
+	@Override
+	public String toString() {
+		return "PortfolioDetails [id=" + id + ", mutualFundDetails=" + mutualFundDetails + ", stockDetails="
+				+ stockDetails + ", username=" + username + ", password=" + password + ", email=" + email + "]";
+	}
+
+	
+	
 }

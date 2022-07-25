@@ -258,6 +258,7 @@ export class DashboardBodyComponent implements OnInit {
       });
     }
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
       let keys = Object.keys(result);
       keys.pop();
       if (name === 'Mutual Funds') {
