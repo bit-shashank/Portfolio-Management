@@ -1,17 +1,24 @@
 table{
     width: 98%;
     text-align: center;
-    /* background-color: #181818; */
+    background-color: #181818;
+    color: white
 }
 
 table .mat-header-cell {
     text-align: center;
+    color: white;
+}
+
+table .mat-cell {
+    color: white;
 }
 
 table .mat-cell{
     padding: 2%;
 }
 
-/* ::ng-deep .mat-dialog-container{
+::ng-deep .mat-dialog-container{
     background-color: #181818;
-} */
+    color: white
+}

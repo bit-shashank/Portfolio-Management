@@ -22,3 +22,27 @@ body {
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 3px solid #181818; /* creates padding around scroll thumb */
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
+}
+/* Font color */
+input.mat-input-element {
+  color: white;
+}
+
+.mat-hint, input, ::placeholder, .mat-form-field-label {
+  color: white;
+}
+
+.mat-button{
+  background: #403737;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: white !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-label{
+  color: white !important;
+}

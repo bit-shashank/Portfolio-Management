@@ -283,3 +283,12 @@ mat-card{
     width: 70%;
   }
 }
+
+/* Font color */
+input.mat-input-element {
+  color: black;
+}
+
+.mat-hint, input, ::placeholder{
+  color: black;
+}
