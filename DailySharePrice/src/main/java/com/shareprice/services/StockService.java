@@ -19,13 +19,17 @@ public class StockService {
 		return stockRepository.findById(id).get();
 	}
 
+	public StockService(StockRepository stockRepository) {
+		super();
+		this.stockRepository = stockRepository;
+	}
+
 	// get stock price using stock id
 	public double getPrice(long id) {
 		return stockRepository.findById(id).get().getCurrentPrice();
 	}
 
 	public List<Stock> getAllStocks() {
-		// TODO Auto-generated method stub
 		return stockRepository.findAll();
 	}
 

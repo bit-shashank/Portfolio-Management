@@ -25,7 +25,11 @@ public class MutualFundService {
 	}
 
 	public List<MutualFund> getAllFunds() {
-		// TODO Auto-generated method stub
 		return mutualfundRepository.findAll();
+	}
+
+	public MutualFundService(MutualfundRepository mutualfundRepository) {
+		super();
+		this.mutualfundRepository = mutualfundRepository;
 	}
 }

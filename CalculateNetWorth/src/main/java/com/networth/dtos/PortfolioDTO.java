@@ -14,6 +14,7 @@ public class PortfolioDTO {
 	private String username;
 	private List<StockDto> stockDetails;
 	private List<FundDto> mutualFundDetails;
+	
 	public String getNetWorth() {
 		return netWorth;
 	}

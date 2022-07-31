@@ -71,13 +71,21 @@ public class PortfolioServices {
 		NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
 
 		String moneyString = formatter.format(amount);
-         
+		System.out.println(moneyString);
+
 		return new PortfolioDTO(moneyString,portfolioDetails.getUsername(), stockDtos,fundDtos);
 	}
-    public StockDto[] getAllStocks(){
+	
+    public PortfolioServices(PortfolioDetailRepository portfolioDetailRepository) {
+		super();
+		this.portfolioDetailRepository = portfolioDetailRepository;
+	}
+
+	public StockDto[] getAllStocks(){
     	StockDto[] portfolioDTO=restTemplate.getForObject("http://localhost:4500/stock/all", StockDto[].class);
     	return portfolioDTO;
     }
+    
 	// sell assets using portfolio entity
 	public PortfolioDTO sellAssets(long id, SaleDetail saleDetail) {
 
