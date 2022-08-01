@@ -35,9 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(detailsService);
 	}
 	
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/stocks","/h2-console/**")
+		http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/stocks","/h2-console/**","/swagger-ui/**","/swagger-resources/**",
+				"/swagger-ui.html","/webjars/**","/v2/api-docs")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
